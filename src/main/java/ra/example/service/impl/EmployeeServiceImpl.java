@@ -4,6 +4,7 @@ import ra.example.dto.request.EmployeeRequest;
 import ra.example.model.Employee;
 import ra.example.service.IEmployeeService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +29,12 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public void save(EmployeeRequest request) throws IOException {
+    public void save(EmployeeRequest request, ServletContext context) throws IOException {
+        String path = context.getRealPath("/uploads");
+        File fileUpload = new File(path);
+        if (!fileUpload.exists()){
+            fileUpload.mkdir();
+        }
         if (request.getId()!=null){
             // cap nhat
             Employee employee = findById(request.getId());
@@ -54,7 +60,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
             if (file!=null && file.getSize()!=0){
                 // uploads
                 newEmployee.setAvatar("/uploads/"+file.getSubmittedFileName());
-                file.write(uploadPath+ File.separator+file.getSubmittedFileName());
+                file.write(path+ File.separator+file.getSubmittedFileName());
             }
             employees.add(newEmployee);
         }

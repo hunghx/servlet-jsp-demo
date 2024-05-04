@@ -32,7 +32,7 @@
             <td>${em.name}</td>
             <td>${em.formatDate()}</td>
             <td>${em.sex?"Nam":"Nu"}</td>
-            <td><img src="${em.avatar}"  alt="#" width="100" height="100" style="object-fit: cover"></td>
+            <td><img src="<%=request.getContextPath()%>${em.avatar}"  alt="#" width="100" height="100" style="object-fit: cover"></td>
             <td><a href="">Edit</a></td>
             <td><a href="">Delete</a></td>
         </tr>

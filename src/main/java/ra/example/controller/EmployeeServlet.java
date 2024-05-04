@@ -51,7 +51,7 @@ public class EmployeeServlet extends HttpServlet {
                     Part file = request.getPart("file");
                     try {
                         EmployeeRequest employeeRequest = new EmployeeRequest(null,name,sdf.parse(dob),Boolean.valueOf(sex),file);
-                        employeeService.save(employeeRequest);
+                        employeeService.save(employeeRequest,getServletContext());
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }
