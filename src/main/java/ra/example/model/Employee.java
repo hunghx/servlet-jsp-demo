@@ -20,4 +20,15 @@ public class Employee {
     public String formatDate(){
        return new SimpleDateFormat("dd/MM/yyyy").format(dob);
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dob=" + formatDate() +
+                ", sex=" + sex +
+                ", avatar='" + avatar + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,7 @@
 package ra.example.service.impl;
 
+import ra.example.dao.IEmployeeDao;
+import ra.example.dao.impl.EmployeeDaoImpl;
 import ra.example.dto.request.EmployeeRequest;
 import ra.example.model.Employee;
 import ra.example.service.IEmployeeService;
@@ -13,23 +15,23 @@ import java.util.List;
 import java.util.Objects;
 
 public class EmployeeServiceImpl implements IEmployeeService {
-    private static final String uploadPath = "C:\\Users\\AD\\IdeaProjects\\Servlet\\src\\main\\webapp\\uploads";
-    private static final List<Employee> employees = new ArrayList<>();
+    private static final String uploadFolder = "C:\\Users\\AD\\IdeaProjects\\Servlet\\src\\main\\webapp\\uploads";
+    private static final IEmployeeDao employeeDao = new EmployeeDaoImpl();
     @Override
     public List<Employee> findAll() {
-        return employees;
+        return employeeDao.findAll();
     }
 
     @Override
     public Employee findById(Integer id) {
-        return employees.stream()
-                .filter(em-> Objects.equals(em.getId(),id))
-                .findFirst()
-                .orElse(null);
+        return employeeDao.findById(id);
     }
 
     @Override
     public void save(EmployeeRequest request, ServletContext context) throws IOException {
+        // chuyển đổi từ dto -> model
+        Employee model= new Employee(request.getId(),request.getName(),request.getDob(),request.getSex(),null);
+        // upload anhr
         String path = context.getRealPath("/uploads");
         File fileUpload = new File(path);
         if (!fileUpload.exists()){
@@ -37,40 +39,26 @@ public class EmployeeServiceImpl implements IEmployeeService {
         }
         if (request.getId()!=null){
             // cap nhat
-            Employee employee = findById(request.getId());
-            if (!request.getName().isEmpty()){
-                employee.setName(request.getName());
-            }
-            employee.setSex(request.getSex());
-            employee.setDob(request.getDob());
-            Part file = request.getFile();
-            if (file!=null && file.getSize()!=0){
-                // uploads
-                employee.setAvatar("/uploads/"+file.getSubmittedFileName());
-                file.write(uploadPath+ File.separator+file.getSubmittedFileName());
-            }
-            employees.set(employees.indexOf(findById(request.getId())), employee); // cos the thua
-
+            // lấy ra ảnh cũ , nếu có ảnh gửi lên thì cập nhật lại anh mơi
         }else {
             // them moi
-            // chuyen tu dto -> model
-            // upload file
-            Employee newEmployee = new Employee(getNewId(),request.getName(),request.getDob(),request.getSex(),"https://bookvexe.vn/wp-content/uploads/2023/04/chon-loc-25-avatar-facebook-mac-dinh-chat-nhat_3.jpg");
-            Part file = request.getFile();
-            if (file!=null && file.getSize()!=0){
-                // uploads
-                newEmployee.setAvatar("/uploads/"+file.getSubmittedFileName());
-                file.write(path+ File.separator+file.getSubmittedFileName());
-            }
-            employees.add(newEmployee);
+//            Employee newEmployee = new Employee(getNewId(),request.getName(),request.getDob(),request.getSex(),"https://bookvexe.vn/wp-content/uploads/2023/04/chon-loc-25-avatar-facebook-mac-dinh-chat-nhat_3.jpg");
+            model.setAvatar("https://bookvexe.vn/wp-content/uploads/2023/04/chon-loc-25-avatar-facebook-mac-dinh-chat-nhat_3.jpg");
+
         }
+        Part file = request.getFile();
+        if (file!=null && file.getSize()!=0){
+            // uploads
+            model.setAvatar("/uploads/"+file.getSubmittedFileName());
+            file.write(path+ File.separator+file.getSubmittedFileName());
+            file.write(uploadFolder+ File.separator+file.getSubmittedFileName());
+        }
+        employeeDao.save(model);
     }
 
     @Override
     public void deleteById(Integer id) {
-        employees.remove(findById(id));
+        employeeDao.deleteById(id);
     }
-    private Integer getNewId(){
-        return employees.stream().map(Employee::getId).max(Integer::compareTo).orElse(0)+1;
-    }
+
 }
