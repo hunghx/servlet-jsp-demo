@@ -17,6 +17,7 @@ out/
 !**/src/test/**/out/
 
 ### Eclipse ###
+.properties
 .apt_generated
 .classpath
 .factorypath
@@ -24,6 +25,7 @@ out/
 .settings
 .springBeans
 .sts4-cache
+.json
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/

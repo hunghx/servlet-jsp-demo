@@ -1024,6 +1024,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Charset>utf8mb4</Charset>
     </collation>
     <schema id="288" parent="1" name="bank">
+      <LastIntrospectionLocalTimestamp>2024-05-07.07:10:05</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="boot">
@@ -1054,7 +1055,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="298" parent="1" name="jdbc_mysql">
-      <LastIntrospectionLocalTimestamp>2024-05-06.07:41:40</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-05-07.07:10:06</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="299" parent="1" name="jpa">
@@ -1093,97 +1094,220 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <schema id="310" parent="1" name="springmvc_jpa_db">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="311" parent="1" name="studentcrud">
+    <schema id="311" parent="1" name="student">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="312" parent="1" name="sys">
+    <schema id="312" parent="1" name="student_db">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="313" parent="1" name="tonghop2_quanlykhachang">
+    <schema id="313" parent="1" name="studentcrud">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="314" parent="1" name="vq_bank_qa">
+    <schema id="314" parent="1" name="sys">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="315" parent="1" name="world">
+    <schema id="315" parent="1" name="tonghop2_quanlykhachang">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <user id="316" parent="1" name="hunghx">
+    <schema id="316" parent="1" name="vq_bank_qa">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="317" parent="1" name="world">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <user id="318" parent="1" name="hunghx">
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="317" parent="1" name="mysql.infoschema">
+    <user id="319" parent="1" name="mysql.infoschema">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="318" parent="1" name="mysql.session">
+    <user id="320" parent="1" name="mysql.session">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="319" parent="1" name="mysql.sys">
+    <user id="321" parent="1" name="mysql.sys">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="320" parent="1" name="root">
+    <user id="322" parent="1" name="root">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <routine id="321" parent="298" name="insert_em">
+    <routine id="323" parent="288" name="change_balance">
+      <Definer>root@localhost</Definer>
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>78</SourceTextLength>
+    </routine>
+    <routine id="324" parent="288" name="send_money">
+      <Definer>root@localhost</Definer>
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>211</SourceTextLength>
+    </routine>
+    <table id="325" parent="288" name="account">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <view id="326" parent="288" name="abc">
+      <Definer>root@localhost</Definer>
+      <SourceTextLength>132</SourceTextLength>
+    </view>
+    <view id="327" parent="288" name="abc1">
+      <Definer>root@localhost</Definer>
+      <SourceTextLength>116</SourceTextLength>
+    </view>
+    <routine id="328" parent="298" name="count_employee">
+      <Definer>root@localhost</Definer>
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>55</SourceTextLength>
+    </routine>
+    <routine id="329" parent="298" name="insert_em">
       <Definer>root@localhost</Definer>
       <RoutineKind>procedure</RoutineKind>
       <SourceTextLength>99</SourceTextLength>
     </routine>
-    <table id="322" parent="298" name="employee">
+    <table id="330" parent="298" name="employee">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <argument id="323" parent="321" name="name_in">
+    <argument id="331" parent="323" name="id_change">
+      <DasType>int|0s</DasType>
+      <Position>1</Position>
+    </argument>
+    <argument id="332" parent="323" name="money">
+      <DasType>int|0s</DasType>
+      <Position>2</Position>
+    </argument>
+    <argument id="333" parent="324" name="id_sender">
+      <DasType>int|0s</DasType>
+      <Position>1</Position>
+    </argument>
+    <argument id="334" parent="324" name="id_receiver">
+      <DasType>int|0s</DasType>
+      <Position>2</Position>
+    </argument>
+    <argument id="335" parent="324" name="amount">
+      <DasType>int|0s</DasType>
+      <Position>3</Position>
+    </argument>
+    <check id="336" parent="325" name="check_balance">
+      <Predicate>`balance` &gt;= 0</Predicate>
+    </check>
+    <column id="337" parent="325" name="id">
+      <AutoIncrement>6</AutoIncrement>
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="338" parent="325" name="name">
+      <DasType>varchar(50)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="339" parent="325" name="balance">
+      <DasType>int|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <index id="340" parent="325" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="341" parent="325" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <trigger id="342" parent="325" name="check_ter">
+      <Definer>root@localhost</Definer>
+      <Events>I</Events>
+      <SourceTextLength>130</SourceTextLength>
+      <Turn>after-row</Turn>
+    </trigger>
+    <trigger id="343" parent="325" name="check_balance">
+      <Definer>root@localhost</Definer>
+      <Events>U</Events>
+      <SourceTextLength>266</SourceTextLength>
+      <Turn>before-row</Turn>
+    </trigger>
+    <column id="344" parent="326" name="id">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="345" parent="326" name="name">
+      <DasType>varchar(50)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="346" parent="326" name="balance">
+      <DasType>int|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="347" parent="327" name="id">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="348" parent="327" name="name">
+      <DasType>varchar(50)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="349" parent="327" name="balance">
+      <DasType>int|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <argument id="350" parent="328" name="total">
+      <ArgumentDirection>O</ArgumentDirection>
+      <DasType>int|0s</DasType>
+      <Position>1</Position>
+    </argument>
+    <argument id="351" parent="329" name="name_in">
       <DasType>varchar(45)|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="324" parent="321" name="dob_in">
+    <argument id="352" parent="329" name="dob_in">
       <DasType>date|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="325" parent="321" name="sex_in">
+    <argument id="353" parent="329" name="sex_in">
       <DasType>bit(1)|0s</DasType>
       <Position>3</Position>
     </argument>
-    <argument id="326" parent="321" name="avatar_in">
+    <argument id="354" parent="329" name="avatar_in">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
     </argument>
-    <column id="327" parent="322" name="id">
+    <column id="355" parent="330" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="328" parent="322" name="name">
+    <column id="356" parent="330" name="name">
       <DasType>varchar(45)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="329" parent="322" name="dob">
+    <column id="357" parent="330" name="dob">
       <DasType>date|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="330" parent="322" name="sex">
+    <column id="358" parent="330" name="sex">
       <DasType>bit(1)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="331" parent="322" name="avatar">
+    <column id="359" parent="330" name="avatar">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="332" parent="322" name="PRIMARY">
+    <index id="360" parent="330" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="333" parent="322" name="PRIMARY">
+    <key id="361" parent="330" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

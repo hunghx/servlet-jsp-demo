@@ -5,6 +5,7 @@ import ra.example.dao.impl.EmployeeDaoImpl;
 import ra.example.dto.request.EmployeeRequest;
 import ra.example.model.Employee;
 import ra.example.service.IEmployeeService;
+import ra.example.service.UploadService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
@@ -17,6 +18,7 @@ import java.util.Objects;
 public class EmployeeServiceImpl implements IEmployeeService {
     private static final String uploadFolder = "C:\\Users\\AD\\IdeaProjects\\Servlet\\src\\main\\webapp\\uploads";
     private static final IEmployeeDao employeeDao = new EmployeeDaoImpl();
+    private static final UploadService uploadService = new UploadService();
     @Override
     public List<Employee> findAll() {
         return employeeDao.findAll();
@@ -49,9 +51,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
         Part file = request.getFile();
         if (file!=null && file.getSize()!=0){
             // uploads
-            model.setAvatar("/uploads/"+file.getSubmittedFileName());
-            file.write(path+ File.separator+file.getSubmittedFileName());
-            file.write(uploadFolder+ File.separator+file.getSubmittedFileName());
+            model.setAvatar(uploadService.uploadFileToServer(file,context));
         }
         employeeDao.save(model);
     }

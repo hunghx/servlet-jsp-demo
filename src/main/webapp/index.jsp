@@ -12,9 +12,9 @@
 <a href="/public.jsp">Public page</a>
 <br><a href="/EmployeeServlet?action=LIST">Danh sach nhan vien</a>
 <br>
-<form action="/HomeServlet" method="post" enctype="multipart/form-data">
-  <input type="text" name="username" placeholder="username"><br>
-  <input type="password" name="password" placeholder="password"><br>
+<form action="/UploadServlet" method="post" enctype="multipart/form-data">
+<%--  <input type="text" name="username" placeholder="username"><br>--%>
+<%--  <input type="password" name="password" placeholder="password"><br>--%>
   <input type="file" name="file"><br>
   <input type="submit" value="Gửi">
 </form>
